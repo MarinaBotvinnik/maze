@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ATP – Project - PartA.iml" filepath="$PROJECT_DIR$/ATP – Project - PartA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/maze.iml" filepath="$PROJECT_DIR$/.idea/maze.iml" />
     </modules>
   </component>
 </project>
