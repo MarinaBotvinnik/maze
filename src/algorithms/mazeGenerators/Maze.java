@@ -1,5 +1,6 @@
 package algorithms.mazeGenerators;
 
+import java.nio.ByteBuffer;
 import java.util.Arrays;
 
 /**
@@ -38,6 +39,20 @@ public class Maze {
         end = new Position(this.rows-1,this.columns-1);
     }
 
+    public Maze(byte[] arr)
+    {
+     byte[] tmp = new byte[2];
+     putBigToSmall(tmp,arr,0);
+     rows = decompressByte(tmp);
+     putBigToSmall(tmp,arr,2);
+     columns = decompressByte(tmp);
+    }
+    private void putBigToSmall(byte[] small, byte[]big, int place){
+        for(int i =0; i<small.length; i++) {
+            small[i] = big[place];
+            place++;
+        }
+    }
     /**
      * Sets the start position with the given coordinates.
      * @param x
@@ -140,5 +155,88 @@ public class Maze {
     {
         if(row<rows && row>=0 && column< columns && column>=0 && (value == 0 || value == 1))
             m_maze[row][column] = value;
+    }
+    private int putInArray (byte[] arr, byte[] input, int k){
+        for(int i=0; i< input.length; i++){
+            arr[k] = input[i];
+            k++;
+        }
+        return k;
+    }
+
+    /**
+     * compressing int into two cell byte array
+     * @param num
+     * @return
+     */
+    private byte[] compressInt(int num){
+        byte[] tmp = new byte[16];
+        int i=0;
+        // turn int into binary num.
+        while(num>0){
+            tmp[i] = (byte)(num%2);
+            num=num/2;
+            i++;
+        }
+        byte [] compressed = new byte [2];
+        int one = 0;
+        int twos =0;
+        for(int k=0; k<8; k++){
+            one = one + (int)tmp[k]*(int)(Math.pow(2,twos));
+            twos++;
+        }
+        compressed[0] = (byte)one;
+        one=0;
+        twos=0;
+        for(int k=8; k<16; k++){
+            one = one + (int)tmp[k]*(int)(Math.pow(2,twos));
+            twos++;
+        }
+        compressed[1] = (byte)one;
+        return compressed;
+    }
+
+    private int decompressByte( byte[] arr){
+        byte[] binary = new byte[16];
+        for(int i=0; i<8; i++){
+            binary[i]= (byte)(arr[0]%2);
+            arr[0] = (byte)(arr[0]/2);
+        }
+        for(int i=8; i<16; i++){
+            binary[i]= (byte)(arr[1]%2);
+            arr[1] = (byte)(arr[1]/2);
+        }
+        int res =0 ;
+        int twos =0;
+        for(int i=0; i<16;i++) {
+            res = res + (int) (binary[1]) * (int) (Math.pow(2, twos));
+            twos++;
+        }
+        return res;
+    }
+
+    public byte[] toByteArray() {
+        int size = 4 + rows * columns + 8;
+        byte[] data = new byte[size];
+        byte[] row = compressInt(rows);
+        byte[] column = compressInt(columns);
+        byte[] startX = compressInt(start.getRowIndex());
+        byte[] startY = compressInt(start.getColumnIndex());
+        byte[] endX = compressInt(end.getRowIndex());
+        byte[] endY = compressInt(end.getColumnIndex());
+        int i=0;
+        i = putInArray(data,row,i);
+        i = putInArray(data,column,i);
+        for (int j = 0; j < rows; j++)
+            for (int k = 0; k < columns; k++) {
+                Integer tmp = new Integer(m_maze[j][k]);
+                data[i] = tmp.byteValue();
+                i++;
+            }
+        i = putInArray(data,startX,i);
+        i = putInArray(data,startY,i);
+        i = putInArray(data,endX,i);
+        putInArray(data,endY,i);
+        return data;
     }
 }
