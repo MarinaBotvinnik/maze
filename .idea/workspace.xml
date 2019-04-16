@@ -6,11 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7efc358-6096-4304-821f-a1f529549351" name="Default Changelist" comment="small changes">
+    <list default="true" id="e7efc358-6096-4304-821f-a1f529549351" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithms/mazeGenerators/Maze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithms/mazeGenerators/Maze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/RunCommunicateWithServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/RunCompressDecompressMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/RunCompressDecompressMaze.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,15 +41,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/algorithms/mazeGenerators/Maze.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="50" column="45" selection-start-line="50" selection-start-column="45" selection-end-line="50" selection-end-column="45" />
+            <state relative-caret-position="153">
+              <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;class#Maze#0" />
-                <element signature="docComment;method#Maze#0;class#Maze#0" />
                 <element signature="method#Maze#0;class#Maze#0" />
                 <element signature="docComment;method#setStartPosition#0;class#Maze#0" />
                 <element signature="method#setStartPosition#0;class#Maze#0" />
@@ -77,7 +73,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/RunCompressDecompressMaze.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="340">
@@ -225,7 +221,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555412331507" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555412659216" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="last_opened_file_path" value="C:/Program Files/Git/cmd/git.exe" />
@@ -326,7 +322,7 @@
       <workItem from="1554999494213" duration="114000" />
       <workItem from="1554999920989" duration="1802000" />
       <workItem from="1555002311871" duration="1456000" />
-      <workItem from="1555332352273" duration="8909000" />
+      <workItem from="1555332352273" duration="9246000" />
     </task>
     <task id="LOCAL-00001" summary="Adding the last test">
       <created>1555000615583</created>
@@ -370,11 +366,18 @@
       <option name="project" value="LOCAL" />
       <updated>1555342841564</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="small changes">
+      <created>1555412360876</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1555412360876</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82462000" />
+    <option name="totallyTimeSpent" value="82799000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -389,7 +392,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16641453" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16641453" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -408,7 +411,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.3289689" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50075644" side_tool="true" weight="0.3289689" />
-      <window_info anchor="bottom" id="Messages" order="12" visible="true" weight="0.1685761" />
+      <window_info active="true" anchor="bottom" id="Messages" order="12" visible="true" weight="0.1685761" />
       <window_info anchor="bottom" id="Duplicate detector" order="13" weight="0.3289689" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -725,37 +728,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/algorithms/mazeGenerators/Maze.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="50" column="45" selection-start-line="50" selection-start-column="45" selection-end-line="50" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;class#Maze#0" />
-            <element signature="docComment;method#Maze#0;class#Maze#0" />
-            <element signature="method#Maze#0;class#Maze#0" />
-            <element signature="docComment;method#setStartPosition#0;class#Maze#0" />
-            <element signature="method#setStartPosition#0;class#Maze#0" />
-            <element signature="docComment;method#setGoalPosition#0;class#Maze#0" />
-            <element signature="method#setGoalPosition#0;class#Maze#0" />
-            <element signature="e#2970#2971#0" expanded="true" />
-            <element signature="e#3025#3026#0" expanded="true" />
-            <element signature="e#3086#3087#0" expanded="true" />
-            <element signature="docComment;method#print#0;class#Maze#0" />
-            <element signature="method#print#0;class#Maze#0" />
-            <element signature="docComment;method#printVer2#0;class#Maze#0" />
-            <element signature="method#printVer2#0;class#Maze#0" />
-            <element signature="docComment;method#getStartPosition#0;class#Maze#0" />
-            <element signature="method#getStartPosition#0;class#Maze#0" />
-            <element signature="docComment;method#getGoalPosition#0;class#Maze#0" />
-            <element signature="method#getGoalPosition#0;class#Maze#0" />
-            <element signature="docComment;method#setValueInMaze#0;class#Maze#0" />
-            <element signature="docComment;method#compressInt#0;class#Maze#0" />
-            <element signature="method#compressInt#0;class#Maze#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/RunCommunicateWithServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -776,6 +748,36 @@
           <caret line="20" column="34" lean-forward="true" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/algorithms/mazeGenerators/Maze.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#Maze#0" />
+            <element signature="method#Maze#0;class#Maze#0" />
+            <element signature="docComment;method#setStartPosition#0;class#Maze#0" />
+            <element signature="method#setStartPosition#0;class#Maze#0" />
+            <element signature="docComment;method#setGoalPosition#0;class#Maze#0" />
+            <element signature="method#setGoalPosition#0;class#Maze#0" />
+            <element signature="e#2970#2971#0" expanded="true" />
+            <element signature="e#3025#3026#0" expanded="true" />
+            <element signature="e#3086#3087#0" expanded="true" />
+            <element signature="docComment;method#print#0;class#Maze#0" />
+            <element signature="method#print#0;class#Maze#0" />
+            <element signature="docComment;method#printVer2#0;class#Maze#0" />
+            <element signature="method#printVer2#0;class#Maze#0" />
+            <element signature="docComment;method#getStartPosition#0;class#Maze#0" />
+            <element signature="method#getStartPosition#0;class#Maze#0" />
+            <element signature="docComment;method#getGoalPosition#0;class#Maze#0" />
+            <element signature="method#getGoalPosition#0;class#Maze#0" />
+            <element signature="docComment;method#setValueInMaze#0;class#Maze#0" />
+            <element signature="docComment;method#compressInt#0;class#Maze#0" />
+            <element signature="method#compressInt#0;class#Maze#0" />
           </folding>
         </state>
       </provider>
