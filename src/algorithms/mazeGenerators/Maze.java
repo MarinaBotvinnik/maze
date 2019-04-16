@@ -46,7 +46,32 @@ public class Maze {
      rows = decompressByte(tmp);
      putBigToSmall(tmp,arr,2);
      columns = decompressByte(tmp);
+     m_maze = fillTheMaze(arr);
+     start = createPosition(arr,arr.length-8);
+     end = createPosition(arr, arr.length-4);
     }
+
+    private Position createPosition(byte[] arr,int place){
+        byte[] tmp = new byte[2];
+        putBigToSmall(tmp,arr,place);
+        int tmpX = decompressByte(tmp);
+        putBigToSmall(tmp,arr,place+2);
+        int tmpY = decompressByte(tmp);
+        Position position = new Position(tmpX,tmpY);
+        return position;
+    }
+
+    private int[][] fillTheMaze(byte[] arr){
+        int[][] maze = new int[rows][columns];
+        int place = 4;
+        for(int i=0; i<rows; i++)
+            for(int j=0; j<columns; j++){
+                maze[i][j] = arr[place];
+                place++;
+            }
+        return maze;
+    }
+
     private void putBigToSmall(byte[] small, byte[]big, int place){
         for(int i =0; i<small.length; i++) {
             small[i] = big[place];
