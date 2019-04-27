@@ -234,7 +234,7 @@ public class Maze {
         int res =0 ;
         int twos =0;
         for(int i=0; i<16;i++) {
-            res = res + (int) (binary[1]) * (int) (Math.pow(2, twos));
+            res = res + (int) (binary[i]) * (int) (Math.pow(2, twos));
             twos++;
         }
         return res;
