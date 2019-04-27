@@ -41,21 +41,21 @@ public class Maze {
 
     public Maze(byte[] arr)
     {
-     byte[] tmp = new byte[2];
+     byte[] tmp = new byte[4];
      putBigToSmall(tmp,arr,0);
      rows = decompressByte(tmp);
-     putBigToSmall(tmp,arr,2);
+     putBigToSmall(tmp,arr,4);
      columns = decompressByte(tmp);
      m_maze = fillTheMaze(arr);
-     start = createPosition(arr,arr.length-8);
-     end = createPosition(arr, arr.length-4);
+     start = createPosition(arr,arr.length-16);
+     end = createPosition(arr, arr.length-8);
     }
 
     private Position createPosition(byte[] arr,int place){
-        byte[] tmp = new byte[2];
+        byte[] tmp = new byte[4];
         putBigToSmall(tmp,arr,place);
         int tmpX = decompressByte(tmp);
-        putBigToSmall(tmp,arr,place+2);
+        putBigToSmall(tmp,arr,place+4);
         int tmpY = decompressByte(tmp);
         Position position = new Position(tmpX,tmpY);
         return position;
@@ -63,7 +63,7 @@ public class Maze {
 
     private int[][] fillTheMaze(byte[] arr){
         int[][] maze = new int[rows][columns];
-        int place = 4;
+        int place = 8;
         for(int i=0; i<rows; i++)
             for(int j=0; j<columns; j++){
                 maze[i][j] = arr[place];
@@ -203,45 +203,67 @@ public class Maze {
             num=num/2;
             i++;
         }
-        byte [] compressed = new byte [2];
+        byte [] compressed = new byte [4];
         int one = 0;
         int twos =0;
-        for(int k=0; k<8; k++){
+        for(int k=0; k<4; k++){
             one = one + (int)tmp[k]*(int)(Math.pow(2,twos));
             twos++;
         }
         compressed[0] = (byte)one;
         one=0;
         twos=0;
-        for(int k=8; k<16; k++){
+        for(int k=4; k<8; k++){
             one = one + (int)tmp[k]*(int)(Math.pow(2,twos));
             twos++;
         }
         compressed[1] = (byte)one;
+        one=0;
+        twos=0;
+        for(int k=8; k<12; k++){
+            one = one + (int)tmp[k]*(int)(Math.pow(2,twos));
+            twos++;
+        }
+        compressed[2] = (byte)one;
+        one=0;
+        twos=0;
+        for(int k=12; k<16; k++){
+            one = one + (int)tmp[k]*(int)(Math.pow(2,twos));
+            twos++;
+        }
+        compressed[3] = (byte)one;
         return compressed;
     }
 
     private int decompressByte( byte[] arr){
         byte[] binary = new byte[16];
-        for(int i=0; i<8; i++){
+        for(int i=0; i<4; i++){
             binary[i]= (byte)(arr[0]%2);
             arr[0] = (byte)(arr[0]/2);
         }
-        for(int i=8; i<16; i++){
+        for(int i=4; i<8; i++){
             binary[i]= (byte)(arr[1]%2);
             arr[1] = (byte)(arr[1]/2);
+        }
+        for(int i=8; i<12; i++){
+            binary[i]= (byte)(arr[2]%2);
+            arr[2] = (byte)(arr[2]/2);
+        }
+        for(int i=12; i<16; i++){
+            binary[i]= (byte)(arr[3]%2);
+            arr[3] = (byte)(arr[3]/2);
         }
         int res =0 ;
         int twos =0;
         for(int i=0; i<16;i++) {
-            res = res + (int) (binary[i]) * (int) (Math.pow(2, twos));
+            res = res + ((int)(binary[i])) * ((int)(Math.pow(2, twos)));
             twos++;
         }
         return res;
     }
 
     public byte[] toByteArray() {
-        int size = 4 + rows * columns + 8;
+        int size = 8 + rows * columns + 16;
         byte[] data = new byte[size];
         byte[] row = compressInt(rows);
         byte[] column = compressInt(columns);
