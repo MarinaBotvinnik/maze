@@ -13,6 +13,9 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
+/**
+ * Created by Aviadjo on 3/27/2017.
+ */
 public class RunCommunicateWithServers {
     public static void main(String[] args) {
         //Initializing servers
@@ -75,7 +78,7 @@ public class RunCommunicateWithServers {
                         ObjectInputStream fromServer = new ObjectInputStream(inFromServer);
                         toServer.flush();
                         MyMazeGenerator mg = new MyMazeGenerator();
-                        Maze maze = mg.generate(10, 10);
+                        Maze maze = mg.generate(50, 50);
                         maze.print();
                         toServer.writeObject(maze); //send maze to server
                         toServer.flush();

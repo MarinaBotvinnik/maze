@@ -105,6 +105,4 @@ public class ServerStrategySolveSearchProblem implements IServerStrategy{
             e.printStackTrace();
         }
     }
-    public ServerStrategySolveSearchProblem() {
-    }
 }
