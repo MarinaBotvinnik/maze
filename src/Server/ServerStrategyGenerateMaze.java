@@ -7,9 +7,7 @@ import algorithms.mazeGenerators.MyMazeGenerator;
 import java.io.*;
 
 public class ServerStrategyGenerateMaze implements IServerStrategy{
-
     public ServerStrategyGenerateMaze() {
-
     }
 
     @Override
@@ -33,6 +31,5 @@ public class ServerStrategyGenerateMaze implements IServerStrategy{
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 }
