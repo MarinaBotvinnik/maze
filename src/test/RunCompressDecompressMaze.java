@@ -60,13 +60,13 @@ public class RunCompressDecompressMaze {
         byte[] l = loadedMaze.toByteArray();
         boolean areMazesEquals = Arrays.equals(loadedMaze.toByteArray(),maze.toByteArray());
         System.out.println(String.format("Mazes equal: %s",areMazesEquals)); //maze should be equal to loadedMaze
-        for(int i=0; i<50; i++) {
+       /* for(int i=0; i<50; i++) {
             System.out.print(one[i] + " ,");
         }
         System.out.println();
         for (int j=0; j<50 ; j++) {
             System.out.print(l[j] + " ,");
-        }
+        }*/
 
 
     }

@@ -45,16 +45,18 @@ public class Maze {
     public Maze(byte[] arr)
     {
      byte[] tmp = new byte[4];
-     putBigToSmall(tmp,arr,0);
-     rows = decompressByte(tmp);
+     putBigToSmall(tmp, arr,0);
+     m_id= decompressByte(tmp);
      putBigToSmall(tmp,arr,4);
+     rows = decompressByte(tmp);
+     putBigToSmall(tmp,arr,8);
      columns = decompressByte(tmp);
      m_maze = fillTheMaze(arr);
      start = createPosition(arr,arr.length-16);
      end = createPosition(arr, arr.length-8);
     }
 
-    private Position createPosition(byte[] arr,int place){
+    private Position createPosition(byte[] arr, int place){
         byte[] tmp = new byte[4];
         putBigToSmall(tmp,arr,place);
         int tmpX = decompressByte(tmp);
@@ -66,7 +68,7 @@ public class Maze {
 
     private int[][] fillTheMaze(byte[] arr){
         int[][] maze = new int[rows][columns];
-        int place = 8;
+        int place = 12;
         for(int i=0; i<rows; i++)
             for(int j=0; j<columns; j++){
                 maze[i][j] = arr[place];
@@ -117,6 +119,10 @@ public class Maze {
 
     public int getColumns() {
         return columns;
+    }
+
+    public int getM_id() {
+        return m_id;
     }
 
     /**
@@ -266,8 +272,9 @@ public class Maze {
     }
 
     public byte[] toByteArray() {
-        int size = 8 + rows * columns + 16;
+        int size = 12 + rows * columns + 16;
         byte[] data = new byte[size];
+        byte[] id= compressInt(m_id);
         byte[] row = compressInt(rows);
         byte[] column = compressInt(columns);
         byte[] startX = compressInt(start.getRowIndex());
@@ -275,6 +282,10 @@ public class Maze {
         byte[] endX = compressInt(end.getRowIndex());
         byte[] endY = compressInt(end.getColumnIndex());
         int i=0;
+        for(int k=0; k<4; k++){
+            Integer tmpID= new Integer()
+        }
+        i = putInArray(data, id,i);
         i = putInArray(data,row,i);
         i = putInArray(data,column,i);
         for (int j = 0; j < rows; j++)

@@ -11,7 +11,7 @@ public class ServerStrategyStringReserver implements IServerStrategy {
 
         String clientCommand;
         try {
-            while (fromClient!=null && !(clientCommand = fromClient.readLine()).equals("exit")){
+            while (fromClient != null && !(clientCommand = fromClient.readLine()).equals("exit")) {
                 Thread.sleep(5000);
                 toClient.write(new StringBuilder(clientCommand).reverse().toString() + "\n");
                 toClient.flush();
