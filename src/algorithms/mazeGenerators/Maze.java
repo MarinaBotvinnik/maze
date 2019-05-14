@@ -17,7 +17,8 @@ public class Maze {
     private int[][] m_maze;
     private Position start;
     private Position end;
-
+    private static volatile int ID=0;
+    private int m_id;
     /**
      * default constractor that creates a maze in the size given
      * default start at maze[0][0]
@@ -37,6 +38,8 @@ public class Maze {
         this.m_maze =  new int[this.rows][this.columns];
         start = new Position(0,0);
         end = new Position(this.rows-1,this.columns-1);
+        m_id=ID;
+        ID++;
     }
 
     public Maze(byte[] arr)

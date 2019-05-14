@@ -1,4 +1,36 @@
 package Server;
 
-public class ServerStrategySolveSearchProblem {
+import IO.MyCompressorOutputStream;
+import algorithms.mazeGenerators.Maze;
+import algorithms.mazeGenerators.MyMazeGenerator;
+import algorithms.search.BestFirstSearch;
+import algorithms.search.SearchableMaze;
+import algorithms.search.Solution;
+
+import java.io.*;
+
+public class ServerStrategySolveSearchProblem implements IServerStrategy{
+    @Override
+    public void serverStrategy(InputStream inFromClient, OutputStream outToClient) {
+        try {
+            ObjectInputStream fromClient = new ObjectInputStream(inFromClient);
+            ObjectOutputStream toClient = new ObjectOutputStream(outToClient);
+            toClient.flush();
+
+            Maze maze = (Maze)fromClient.readObject();
+            SearchableMaze domain = new SearchableMaze(maze);
+            BestFirstSearch searcher = new BestFirstSearch();
+            Solution solution = searcher.solve(domain);
+
+            toClient.writeObject(solution);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ServerStrategySolveSearchProblem() {
+    }
 }

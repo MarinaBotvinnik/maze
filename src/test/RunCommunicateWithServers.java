@@ -1,8 +1,20 @@
 package test;
+import IO.MyDecompressorInputStream;
+import Server.*;
+import Client.*;
+import algorithms.mazeGenerators.Maze;
+import algorithms.mazeGenerators.MyMazeGenerator;
+import algorithms.search.AState;
+import algorithms.search.Solution;
+
+import java.io.*;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 public class RunCommunicateWithServers {
     public static void main(String[] args) {
-      /*  //Initializing servers
+        //Initializing servers
         Server mazeGeneratingServer = new Server(5400, 1000, new ServerStrategyGenerateMaze());
         Server solveSearchProblemServer = new Server(5401, 1000, new ServerStrategySolveSearchProblem());
         //Server stringReverserServer = new Server(5402, 1000, new ServerStrategyStringReverser());
@@ -21,9 +33,8 @@ public class RunCommunicateWithServers {
         mazeGeneratingServer.stop();
         solveSearchProblemServer.stop();
         //stringReverserServer.stop();
-        */
     }
-/*
+
     private static void CommunicateWithServer_MazeGenerating() {
         try {
             Client client = new Client(InetAddress.getLocalHost(), 5400, new IClientStrategy() {
@@ -39,12 +50,12 @@ public class RunCommunicateWithServers {
                         toServer.flush();
                         byte[] compressedMaze = (byte[]) fromServer.readObject();
                         //read generated maze (compressed with MyCompressor) from server
-                        InputStream is = new MyDecompressorInputStream(new ByteArrayInputStream(compressedMaze)); */
-    //byte[] decompressedMaze = new byte[1000 /*CHANGE SIZE ACCORDING TO YOU MAZE SIZE*/];
-    //allocating byte[] for the decompressed maze -
+                        InputStream is = new MyDecompressorInputStream(new ByteArrayInputStream(compressedMaze));
+                        byte[] decompressedMaze = new byte[1000 /*CHANGE SIZE ACCORDING TO YOU MAZE SIZE*/];
+                        //allocating byte[] for the decompressed maze -
 
-    //is.read(decompressedMaze);//Fill decompressedMaze with bytes
-                       /* Maze maze = new Maze(decompressedMaze);
+                        is.read(decompressedMaze);//Fill decompressedMaze with bytes
+                        Maze maze = new Maze(decompressedMaze);
                         maze.print();
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -118,5 +129,5 @@ public class RunCommunicateWithServers {
             e.printStackTrace();
         }
     }
-    */
+
 }

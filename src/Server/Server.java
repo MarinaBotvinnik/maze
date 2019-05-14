@@ -1,15 +1,10 @@
 package Server;
 
-import Server.IServerStrategy;
-import java.util.logging.log4j.LogManager;
-import java.util.logging.log4j.Logger;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
+
 
 
 public class Server {
@@ -17,7 +12,6 @@ public class Server {
     private int listeningInterval;
     private IServerStrategy serverStrategy;
     private volatile boolean stop;
-    private static final Logger LOG = LogManager.getLogger(); //Log4j2
 
     public Server(int port, int listeningInterval, IServerStrategy serverStrategy) {
         this.port = port;
@@ -35,39 +29,39 @@ public class Server {
         try {
             ServerSocket serverSocket = new ServerSocket(port);
             serverSocket.setSoTimeout(listeningInterval);
-            LOG.info(String.format("Server starter at %s!", serverSocket));
-            LOG.info(String.format("Server's Strategy: %s", serverStrategy.getClass().getSimpleName()));
-            LOG.info("Server is waiting for clients...");
+            System.out.println((String.format("Server starter at %s!", serverSocket)));
+            System.out.println((String.format("Server's Strategy: %s", serverStrategy.getClass().getSimpleName())));
+            System.out.println(("Server is waiting for clients..."));
             while (!stop) {
                 try {
                     Socket clientSocket = serverSocket.accept(); // blocking call
-                    LOG.info(String.format("Client excepted: %s", clientSocket));
+                    System.out.println(String.format("Client excepted: %s", clientSocket));
                     new Thread(() -> {
                         handleClient(clientSocket);
-                        LOG.info(String.format("Finished handle client: %s", clientSocket));
+                        System.out.println(String.format("Finished handle client: %s", clientSocket));
                     }).start();
                 } catch (SocketTimeoutException e) {
-                    LOG.debug("Socket Timeout - No clients pending!");
+                    System.out.println("Socket Timeout - No clients pending!");
                 }
             }
             serverSocket.close();
         } catch (IOException e) {
-            LOG.error("IOException", e);
+            System.out.println("IOException"+ e);
         }
     }
 
     private void handleClient(Socket clientSocket) {
         try {
-            LOG.info(String.format("Handling client with socket: %s", clientSocket.toString()));
+            System.out.println(String.format("Handling client with socket: %s", clientSocket.toString()));
             serverStrategy.serverStrategy(clientSocket.getInputStream(), clientSocket.getOutputStream());
             clientSocket.close();
         } catch (IOException e) {
-            LOG.error("IOException", e);
+            System.out.println("IOException"+ e);
         }
     }
 
     public void stop() {
-        LOG.info("Stopping server..");
+        System.out.println("Stopping server..");
         stop = true;
     }
 }
