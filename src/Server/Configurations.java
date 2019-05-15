@@ -14,7 +14,7 @@ public class Configurations {
 
             if (input == null) {
                 System.out.println("Sorry, unable to find config.properties");
-                return null;
+                return "Marina";
             }
 
             //load a properties file from class path, inside static method
