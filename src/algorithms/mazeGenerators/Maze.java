@@ -1,8 +1,6 @@
 package algorithms.mazeGenerators;
 
 import java.io.Serializable;
-import java.nio.ByteBuffer;
-import java.util.Arrays;
 
 /**
  * A class that describes a maze with five parameters:
@@ -22,7 +20,7 @@ public class Maze implements Serializable {
     /**
      * default constractor that creates a maze in the size given
      * default start at maze[0][0]
-     * default end at maze[rows-1][colum
+     * default end at maze[rows-1][columns]
      * @param rows
      * @param columns
      */

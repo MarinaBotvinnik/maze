@@ -17,6 +17,8 @@ import java.util.ArrayList;
  * Created by Aviadjo on 3/27/2017.
  */
 public class RunCommunicateWithServers {
+    public static MyMazeGenerator generator = new MyMazeGenerator();
+    public static Maze Smaze = generator.generate(10,10);
     public static void main(String[] args) {
         //Initializing servers
         //Server mazeGeneratingServer = new Server(5400, 1000, new ServerStrategyGenerateMaze());
@@ -79,8 +81,8 @@ public class RunCommunicateWithServers {
                         toServer.flush();
                         MyMazeGenerator mg = new MyMazeGenerator();
                         Maze maze = mg.generate(10, 10);
-                        maze.print();
-                        toServer.writeObject(maze); //send maze to server
+                        Smaze.print();
+                        toServer.writeObject(Smaze); //send maze to server
                         toServer.flush();
                         Solution mazeSolution = (Solution) fromServer.readObject(); //read generated maze (compressed with MyCompressor) from server
 
@@ -95,6 +97,7 @@ public class RunCommunicateWithServers {
                     }
                 }
             });
+            client.communicateWithServer();
             client.communicateWithServer();
         } catch (UnknownHostException e) {
             e.printStackTrace();
