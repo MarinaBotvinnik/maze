@@ -24,8 +24,7 @@ public class Server {
 
     public void start() {
         new Thread(() -> {
-            runServer();
-        }).start();
+            runServer();}).start();
     }
 
     private void runServer() {

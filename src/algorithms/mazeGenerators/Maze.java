@@ -17,6 +17,8 @@ public class Maze implements Serializable {
     private Position start;
     private Position end;
 
+
+
     /**
      * default constractor that creates a maze in the size given
      * default start at maze[0][0]
@@ -41,11 +43,9 @@ public class Maze implements Serializable {
     public Maze(byte[] arr)
     {
      byte[] tmp = new byte[4];
-     putBigToSmall(tmp, arr,0);
-     m_id= decompressByte(tmp);
-     putBigToSmall(tmp,arr,4);
+     putBigToSmall(tmp,arr,0);
      rows = decompressByte(tmp);
-     putBigToSmall(tmp,arr,8);
+     putBigToSmall(tmp,arr,4);
      columns = decompressByte(tmp);
      m_maze = fillTheMaze(arr);
      start = createPosition(arr,arr.length-16);
@@ -64,7 +64,7 @@ public class Maze implements Serializable {
 
     private int[][] fillTheMaze(byte[] arr){
         int[][] maze = new int[rows][columns];
-        int place = 12;
+        int place = 8;
         for(int i=0; i<rows; i++)
             for(int j=0; j<columns; j++){
                 maze[i][j] = arr[place];
@@ -117,9 +117,6 @@ public class Maze implements Serializable {
         return columns;
     }
 
-    public int getM_id() {
-        return m_id;
-    }
 
     /**
      * Prints the maze exactly like it is - two dimensional array filled with zeroes and ones.
@@ -268,9 +265,9 @@ public class Maze implements Serializable {
     }
 
     public byte[] toByteArray() {
-        int size = 12 + rows * columns + 16;
+        int size = 8 + rows * columns + 16;
         byte[] data = new byte[size];
-        byte[] id= compressInt(m_id);
+
         byte[] row = compressInt(rows);
         byte[] column = compressInt(columns);
         byte[] startX = compressInt(start.getRowIndex());
@@ -278,10 +275,6 @@ public class Maze implements Serializable {
         byte[] endX = compressInt(end.getRowIndex());
         byte[] endY = compressInt(end.getColumnIndex());
         int i=0;
-        for(int k=0; k<4; k++){
-            Integer tmpID= new Integer()
-        }
-        i = putInArray(data, id,i);
         i = putInArray(data,row,i);
         i = putInArray(data,column,i);
         for (int j = 0; j < rows; j++)
