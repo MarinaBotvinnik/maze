@@ -49,7 +49,6 @@ public class MyCompressorOutputStream extends OutputStream {
                 out.write(b[i]);
             }
         }
-        System.out.println();
     }
 
     @Override
