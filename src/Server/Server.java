@@ -29,6 +29,7 @@ public class Server {
 
     private void runServer() {
         try {
+            int ThreadSize= Integer.parseInt(Configurations.getProperty("Server.NumThread"));
             ServerSocket serverSocket = new ServerSocket(port);
             serverSocket.setSoTimeout(listeningInterval);
             ExecutorService executorService = Executors.newFixedThreadPool(6);
