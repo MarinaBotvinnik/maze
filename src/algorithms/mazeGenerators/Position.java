@@ -1,9 +1,11 @@
 package algorithms.mazeGenerators;
 
+import java.io.Serializable;
+
 /**
  * A class that represents a position in a maze with x and y coordinates.
  */
-public class Position {
+public class Position implements Serializable {
     private int x;
     private int y;
 
