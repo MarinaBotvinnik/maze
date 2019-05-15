@@ -33,26 +33,37 @@ public class ServerStrategySolveSearchProblem implements IServerStrategy{
         solution.setSolutionPath(arrSol);
         return solution;
     }
-    private Solution WriteMazeAndSol(String path,Maze maze){
+    private Solution WriteMazeAndSol(String tmppath,Maze maze){
         Solution solution=null;
         try {
-            File tmpdir = new File(path);
-            FileOutputStream file = new FileOutputStream(tmpdir);
+            /*
+            FileOutputStream outS=new FileOutputStream(tempDirectoryPath+"//"+maze.getStartPosition().getRowIndex()+maze.getStartPosition().getColumnIndex()+maze.getGoalPosition().getRowIndex()+maze.getGoalPosition().getColumnIndex()+maze.getRows()+maze.getcolumns()+"//"+index+"s.txt");
+            BufferedWriter writer = new BufferedWriter(new PrintWriter(outS));
+            ArrayList<AState> solutionPath = solution.getSolutionPath();
+            for (int i = 0; i < solutionPath.size(); i++) {
+                writer.write(solutionPath.get(i).toString());
+                writer.newLine();
+            }
+             */
+            FileOutputStream file = new FileOutputStream(tmppath);
+            BufferedWriter writer = new BufferedWriter(new PrintWriter(file));
             MyCompressorOutputStream comp = new MyCompressorOutputStream(file);
             comp.write(maze.toByteArray());
-            FileWriter fileWriter = new FileWriter(tmpdir);
-            PrintWriter printWriter = new PrintWriter(fileWriter);
-            printWriter.print(":");
+            writer.write(":");
             SearchableMaze domain = new SearchableMaze(maze);
             BestFirstSearch searcher = new BestFirstSearch();
             solution = searcher.solve(domain);
-            for (AState state : solution.getSolutionPath()) {
+            ArrayList<AState> path = solution.getSolutionPath();
+            for (AState state : path) {
                 String[] s = state.getStateName().split(" ");
-                printWriter.print("(" + s[0] + "," + s[1] + ")");
-                printWriter.print(state.getCost());
+                writer.write("(" + s[0] + "," + s[1] + ")");
+                double cost = state.getCost();
+                writer.write((int) cost);
             }
-            printWriter.println();
-        } catch (IOException e) {
+            writer.newLine();
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+    } catch (IOException e) {
             e.getMessage();
         }
         return solution;
@@ -68,11 +79,11 @@ public class ServerStrategySolveSearchProblem implements IServerStrategy{
             String tempDirectoryPath = System.getProperty("java.io.tmpdir");
             Maze maze = (Maze) fromClient.readObject();
             String mazeName = "" + maze.getRows() + "," + maze.getColumns() + "," + maze.getStartPosition().toString() + maze.getGoalPosition().toString();
-            Path path = Paths.get(tempDirectoryPath + "/" + mazeName);
+            Path path = Paths.get(tempDirectoryPath + "/" + mazeName+".txt");
             //there is already this name in the folder
             if (Files.exists(path)) {
-                File tmpdir = new File(tempDirectoryPath + "/" + mazeName);
-                BufferedReader br = new BufferedReader(new FileReader(tmpdir));
+                File tmpdir = new File(tempDirectoryPath + "/" + mazeName+".txt");
+                BufferedReader br = new BufferedReader(new FileReader(tempDirectoryPath + "/" + mazeName+".txt"));
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 MyCompressorOutputStream outputStream = new MyCompressorOutputStream(byteArrayOutputStream);
                 outputStream.write(maze.toByteArray());
@@ -93,10 +104,10 @@ public class ServerStrategySolveSearchProblem implements IServerStrategy{
                 }
                 //the file name exits but there is no equal maze
                 if (exist == false) {
-                    solution = WriteMazeAndSol(tempDirectoryPath + "/" + mazeName, maze);
+                    solution = WriteMazeAndSol(tempDirectoryPath + "/" + mazeName+".txt", maze);
                 }
             } else { //we need to create a new file in the folder
-                solution = WriteMazeAndSol(tempDirectoryPath + "/" + mazeName, maze);
+                solution = WriteMazeAndSol(tempDirectoryPath + "/" + mazeName+".txt", maze);
             }
             toClient.writeObject(solution);
         } catch (IOException e) {

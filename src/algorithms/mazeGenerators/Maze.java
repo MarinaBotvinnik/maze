@@ -1,5 +1,6 @@
 package algorithms.mazeGenerators;
 
+import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
@@ -11,7 +12,7 @@ import java.util.Arrays;
  * 4. a position of the start point
  * 5. a position of the end point
  */
-public class Maze {
+public class Maze implements Serializable {
     private int rows;
     private int columns;
     private int[][] m_maze;

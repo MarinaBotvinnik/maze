@@ -20,10 +20,13 @@ public class ServerStrategyGenerateMaze implements IServerStrategy{
             int columns = sizes[1];
             MyMazeGenerator mg = new MyMazeGenerator();
             Maze maze = mg.generate(rows,columns);
-            byte []b = maze.toByteArray();
-            MyCompressorOutputStream comp = new MyCompressorOutputStream(outToClient);
-            comp.write(b);
-
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            MyCompressorOutputStream outputStream = new MyCompressorOutputStream(byteArrayOutputStream);
+            outputStream.write(maze.toByteArray());
+            byte[] mymazebyte = byteArrayOutputStream.toByteArray();
+            toClient.writeObject(mymazebyte);
+            //fromClient.close();
+            //toClient.close();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

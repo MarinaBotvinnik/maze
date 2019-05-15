@@ -1,9 +1,12 @@
 package algorithms.search;
+
+import java.io.Serializable;
+
 /**
  * The class define a state in the maze problem.
  * The params x,y are the indexes of the state in the maze.
  */
-public class MazeState extends AState {
+public class MazeState extends AState implements Serializable {
     private int x;
     private int y;
 
